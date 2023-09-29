@@ -9,7 +9,7 @@ use ObscureCode\Translator\Exceptions\MissedTranslationException;
 final class Translator
 {
     private array $translations = [];
-    private Language $language = Language::EN;
+    private string $language = Language::EN;
 
     public function setTranslations(array $translations): Translator
     {
@@ -18,7 +18,7 @@ final class Translator
         return $this;
     }
 
-    public function setLanguage(Language $language): Translator
+    public function setLanguage(string $language): Translator
     {
         $this->language = $language;
 
@@ -27,14 +27,14 @@ final class Translator
 
     public function getTranslation(string $key): mixed
     {
-        if (isset($this->translations[$key][$this->language->value])) {
-            return $this->translations[$key][$this->language->value];
+        if (isset($this->translations[$key][$this->language])) {
+            return $this->translations[$key][$this->language];
         }
 
-        if (isset($this->translations[$this->language->value][$key])) {
-            return $this->translations[$this->language->value][$key];
+        if (isset($this->translations[$this->language][$key])) {
+            return $this->translations[$this->language][$key];
         }
 
-        throw new MissedTranslationException('Missed translation: ' . $key . ' Language: ' . $this->language->value);
+        throw new MissedTranslationException('Missed translation: ' . $key . ' Language: ' . $this->language);
     }
 }

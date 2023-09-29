@@ -50,6 +50,13 @@ $translation = $translator
 echo $translation; //gut
 ```
 
+There are some popular languages in `ObscureCode\Translator\Language`, but you can use any:
+
+```php
+$language = (new LanguageRepository())
+    ->setAvailableLanguages([Language::DE, Language::EN, 'valyrian'])
+```
+
 # Local development
 
 ```
@@ -62,4 +69,5 @@ cd /app/vendor/bin/
 ./phpunit /app/tests/
 ./phpcs /app/src/
 ./phpstan analyze /app/src/
+./psalm
 ```

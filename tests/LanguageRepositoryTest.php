@@ -19,7 +19,7 @@ class LanguageRepositoryTest extends TestCase
 
     public function testWithGetData(): void
     {
-        $_GET['testLangParam'] = Language::RU->value;
+        $_GET['testLangParam'] = Language::RU;
 
         $language = (new LanguageRepository())
             ->setAvailableLanguages([Language::RU, Language::EN])
@@ -31,7 +31,7 @@ class LanguageRepositoryTest extends TestCase
 
     public function testWithCookieData(): void
     {
-        $_COOKIE['testCookieName'] = Language::RU->value;
+        $_COOKIE['testCookieName'] = Language::RU;
 
         $language = (new LanguageRepository())
             ->setAvailableLanguages([Language::RU, Language::EN])

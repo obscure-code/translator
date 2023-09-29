@@ -6,9 +6,9 @@ namespace ObscureCode\Translator;
 
 final class LanguageRepository
 {
-    private Language $defaultLanguage = Language::EN;
+    private string $defaultLanguage = Language::EN;
 
-    /** @var list<Language> */
+    /** @var list<string> */
     private array $availableLanguages = [Language::EN];
 
     private string $getParameter = 'lang';
@@ -17,21 +17,12 @@ final class LanguageRepository
 
     private int $cookieExpire = 10 * 365 * 24 * 60 * 60;
 
-    public function getLanguage(string $language): Language
+    public function getLanguage(string $language): string
     {
-        $language = Language::tryFrom($language);
-
-        if ($language === null) {
-            return $this->defaultLanguage;
-        }
-        if (!in_array($language, $this->availableLanguages)) {
-            return $this->defaultLanguage;
-        }
-
-        return $language;
+        return (in_array($language, $this->availableLanguages)) ? $language : $this->defaultLanguage;
     }
 
-    public function readLanguage(): Language
+    public function readLanguage(): string
     {
         if (isset($_GET[$this->getParameter])) {
             /** @var string $languageFromGet */
@@ -56,17 +47,17 @@ final class LanguageRepository
         return $this->defaultLanguage;
     }
 
-    public function saveLanguageToCookie(Language $language): void
+    public function saveLanguageToCookie(string $language): void
     {
         setcookie(
             $this->cookieName,
-            $language->value,
+            $language,
             time() + $this->cookieExpire,
             '/',
         );
     }
 
-    public function setDefaultLanguage(Language $defaultLanguage): LanguageRepository
+    public function setDefaultLanguage(string $defaultLanguage): LanguageRepository
     {
         $this->defaultLanguage = $defaultLanguage;
 
@@ -74,7 +65,7 @@ final class LanguageRepository
     }
 
     /**
-     * @param list<Language> $availableLanguages
+     * @param list<string> $availableLanguages
      */
     public function setAvailableLanguages(array $availableLanguages): LanguageRepository
     {

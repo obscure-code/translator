@@ -13,11 +13,11 @@ class TranslatorTest extends TestCase
     {
         $translator = (new Translator())
             ->setTranslations([
-                Language::RU->value => [
+                Language::RU => [
                     'rhododendron' => 'рододендрон',
                     'kalmiopsis' => 'кальмиопсис',
                 ],
-                Language::EN->value => [
+                Language::EN => [
                     'rhododendron' => 'rhododendron',
                     'kalmiopsis' => 'kalmiopsis',
                 ]
@@ -55,12 +55,12 @@ class TranslatorTest extends TestCase
         $translator = (new Translator())
             ->setTranslations([
                 'rhododendron' => [
-                    Language::RU->value => 'рододендрон',
-                    Language::EN->value => 'rhododendron',
+                    Language::RU => 'рододендрон',
+                    Language::EN => 'rhododendron',
                 ],
                 'kalmiopsis' => [
-                    Language::RU->value => 'кальмиопсис',
-                    Language::EN->value => 'kalmiopsis',
+                    Language::RU => 'кальмиопсис',
+                    Language::EN => 'kalmiopsis',
                 ],
             ]);
 
@@ -96,7 +96,7 @@ class TranslatorTest extends TestCase
         $translator = (new Translator())
             ->setTranslations([
                 'rhododendron' => [
-                    Language::RU->value => 'рододендрон',
+                    Language::RU => 'рододендрон',
                 ],
             ]);
 

@@ -37,4 +37,9 @@ final class Translator
 
         throw new MissedTranslationException('Missed translation: ' . $key . ' Language: ' . $this->language);
     }
+
+    public function getLanguage(): string
+    {
+        return $this->language;
+    }
 }
